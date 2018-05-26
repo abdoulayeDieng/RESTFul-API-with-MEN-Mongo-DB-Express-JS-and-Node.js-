@@ -1,5 +1,6 @@
 const express = require("express");
 const medicRoutes = require("./api/routes/medicaments");
+const userRoutes = require("./api/routes/users");
 const mongoose = require("mongoose");
 const app = express();
 
@@ -9,7 +10,7 @@ app.use(express.json());
 
 mongoose.connect("mongodb://pharmappUser:pharmapp@ds147900.mlab.com:47900/pharmapp");
 app.use("/medicaments",medicRoutes);
-
+app.use("/users",userRoutes);
 
 
 app.listen(port,function(req,res) {

@@ -77,7 +77,6 @@ router.put("/:medicId",function(req,res) {
             erreur: err
         })
     })
-    
 });
 
 router.delete("/:medicId",function(req,res) {
