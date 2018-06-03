@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
+const Medic = require("../models/medicaments");
 
-const Medic = require("../models/medicaments")
+const checkAuth = require("../middlewares/check-auth");
 
 router.get("/",function(req,res) {
     Medic.find()
@@ -21,7 +22,7 @@ router.get("/",function(req,res) {
     })
 }); 
 
-router.post("/",function(req,res) {
+router.post("/", checkAuth, function(req,res) {
     const newMedic = new Medic({
         _id: new mongoose.Types.ObjectId(),
         nom: req.body.nom,
@@ -61,7 +62,7 @@ router.get("/:medicId",function(req,res) {
     })
 });
 
-router.put("/:medicId",function(req,res) {
+router.put("/:medicId",checkAuth,function(req,res) {
     const id = req.params.medicId;
     Medic.findByIdAndUpdate(id,{$set:req.body},{new:true})
     .then(function(doc) {
@@ -79,7 +80,7 @@ router.put("/:medicId",function(req,res) {
     })
 });
 
-router.delete("/:medicId",function(req,res) {
+router.delete("/:medicId",checkAuth,function(req,res) {
     const id = req.params.medicId;
     Medic.findByIdAndRemove(id)
     .then(function(doc) {

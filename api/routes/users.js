@@ -34,7 +34,7 @@ router.post("/signup",function(req,res) {
             })
         }
     });
-});
+}); 
 router.post("/login", function(req,res) {
     User.findOne({email:req.body.email})
     .then(function(doc) {
@@ -54,7 +54,6 @@ router.post("/login", function(req,res) {
                     });   
                 }  
             })
-            console.log(doc);
         }
     })
 })
